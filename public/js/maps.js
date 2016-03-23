@@ -1,4 +1,5 @@
 var map;
+var markers = [];
 
 function initialize_gmaps() {
 
@@ -57,14 +58,17 @@ $(document).ready(function() {
   initialize_gmaps();
 });
 
-function drawLocation(location, opts) {
+//we are also pushing in the day number
+function drawLocation(location, opts,name, day) {
     if (typeof opts !== 'object') {
       opts = {};
     }
     opts.position = new google.maps.LatLng(location[0], location[1]);
     opts.map = map;
     var marker = new google.maps.Marker(opts);
-  };
+    markers.push({marker: marker, name: name, day: day});
+    //we have a day property on the object
+  }
 
 // var styleArr = [{
 //   featureType: 'landscape',
